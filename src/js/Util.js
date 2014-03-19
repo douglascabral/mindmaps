@@ -4,21 +4,6 @@
 mindmaps.Util = mindmaps.Util || {};
 
 /**
- * Tracks an event to google analytics.
- */
-mindmaps.Util.trackEvent = function(category, action, label) {
-    if (!window._gaq) {
-      return;
-    }
-
-    if (label) {
-      _gaq.push([ '_trackEvent', category, action, label]);
-    } else {
-      _gaq.push([ '_trackEvent', category, action]);
-    }
-}
-
-/**
  * Creates a UUID in compliance with RFC4122.
  * 
  * @static

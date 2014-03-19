@@ -19,14 +19,6 @@ mindmaps.SaveDocumentView = function() {
     }
   });
 
-
-  var $saveCloudStorageButton = $("#button-save-cloudstorage").button().click(
-    function() {
-      if (self.cloudStorageButtonClicked) {
-        self.cloudStorageButtonClicked();
-      }
-    });
-
   var $localSorageButton = $("#button-save-localstorage").button().click(
     function() {
       if (self.localStorageButtonClicked) {
@@ -101,7 +93,6 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
   * Save in cloud button was clicked.
   */
   view.cloudStorageButtonClicked = function() {
-    mindmaps.Util.trackEvent("Clicks", "cloud-save");
 
     filePicker.save({
       success: function() {
@@ -120,7 +111,6 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
   * @ignore
   */
   view.localStorageButtonClicked = function() {
-    mindmaps.Util.trackEvent("Clicks", "localstorage-save");
 
     var success = mindmapModel.saveToLocalStorage();
     if (success) {
@@ -152,7 +142,6 @@ mindmaps.SaveDocumentPresenter = function(eventBus, mindmapModel, view, autosave
   * @returns {String}
   */
   view.fileNameRequested = function() {
-    mindmaps.Util.trackEvent("Clicks", "hdd-save");
 
     return mindmapModel.getMindMap().getRoot().getCaption() + ".json";
   };

@@ -1,5 +1,1 @@
-.settings/
-.project
-.classpath
-bin/
-node_modules/
+/nbproject/private/

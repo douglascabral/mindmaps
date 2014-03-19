@@ -280,7 +280,7 @@ mindmaps.ToolBarPresenter = function(eventBus, commandRegistry, view,
   view.addButtonGroup(clipboardButtons, view.alignLeft);
 
   // file menu
-  var fileMenu = new mindmaps.ToolBarMenu("Mind map", "ui-icon-document");
+  var fileMenu = new mindmaps.ToolBarMenu("Menu", "ui-icon-document");
   var fileCommands = [ mindmaps.NewDocumentCommand,
       mindmaps.OpenDocumentCommand, mindmaps.SaveDocumentCommand,
       mindmaps.ExportCommand, mindmaps.PrintCommand,
@@ -290,7 +290,7 @@ mindmaps.ToolBarPresenter = function(eventBus, commandRegistry, view,
   view.addMenu(fileMenu);
 
   // help button
-  view.addButton(commandToButton(mindmaps.HelpCommand), view.alignRight);
+  //view.addButton(commandToButton(mindmaps.HelpCommand), view.alignRight);
 
   this.go = function() {
     view.init();

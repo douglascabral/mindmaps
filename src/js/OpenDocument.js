@@ -19,12 +19,6 @@ mindmaps.OpenDocumentView = function() {
     }
   });
 
-  var $openCloudButton = $("#button-open-cloud").button().click(function() {
-    if (self.openCloudButtonClicked) {
-      self.openCloudButtonClicked();
-    }
-  });
-
   $dialog.find(".file-chooser input").bind("change", function(e) {
     if (self.openExernalFileClicked) {
       self.openExernalFileClicked(e);
@@ -81,20 +75,6 @@ mindmaps.OpenDocumentView = function() {
   this.hideOpenDialog = function() {
     $dialog.dialog("close");
   };
-
-  this.showCloudError = function(msg) {
-    $dialog.find('.cloud-loading').removeClass('loading');
-    $dialog.find('.cloud-error').text(msg);
-  };
-
-  this.showCloudLoading = function() {
-    $dialog.find('.cloud-error').text('');
-    $dialog.find('.cloud-loading').addClass('loading');
-  };
-
-  this.hideCloudLoading = function() {
-    $dialog.find('.cloud-loading').removeClass('loading');
-  };
 };
 
 /**
@@ -110,33 +90,12 @@ mindmaps.OpenDocumentView = function() {
 mindmaps.OpenDocumentPresenter = function(eventBus, mindmapModel, view, filePicker) {
 
   /**
-   * Open file via cloud
-   */
-  view.openCloudButtonClicked = function(e) {
-    mindmaps.Util.trackEvent("Clicks", "cloud-open");
-
-    filePicker.open({
-      load: function() {
-        view.showCloudLoading();
-      },
-      success: function() {
-        view.hideOpenDialog();
-      },
-      error: function(msg) {
-        view.showCloudError(msg);
-      }
-    });
-  };
-
-  // http://www.w3.org/TR/FileAPI/#dfn-filereader
-  /**
   * View callback: external file has been selected. Try to read and parse a
   * valid mindmaps Document.
   * 
   * @ignore
   */
   view.openExernalFileClicked = function(e) {
-    mindmaps.Util.trackEvent("Clicks", "hdd-open");
 
     var files = e.target.files;
     var file = files[0];
@@ -164,8 +123,6 @@ mindmaps.OpenDocumentPresenter = function(eventBus, mindmapModel, view, filePick
   * @param {mindmaps.Document} doc
   */
   view.documentClicked = function(doc) {
-    mindmaps.Util.trackEvent("Clicks", "localstorage-open");
-    
     mindmapModel.setDocument(doc);
     view.hideOpenDialog();
   };

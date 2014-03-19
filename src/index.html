@@ -1,17 +1,8 @@
 <!doctype html>
-<!-- DEBUG -->
-<!-- disable offline caching in debug mode -->
 <html>
-<!-- /DEBUG -->
-<!-- PRODUCTION
-<html manifest="cache.appcache">
-/PRODUCTION -->
 <head>
 <meta charset="utf-8">
-<meta name="description" content="mindmaps is an HTML5 based mind mapping app. It lets you create neat looking mind maps in the browser." />
-<meta name="keywords" content="mind maps html5 mindmaps offline easy intuitive" />
-<meta name="google" content="notranslate"/>
-<title>mindmaps</title>
+<title>Mindmaps</title>
 <link rel="icon" type="image/png" href="img/favicon.png" />
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/app.css">
@@ -47,25 +38,19 @@
 <tr>
   <td><a class="title" href="#">${title}</a></td>
   <td>${$item.format(dates.modified)}</td>
-  <td><a class="delete" href="#">delete</a></td>
+  <td><a class="delete" href="#">Apagar</a></td>
 </tr>
 </script>
 
 <script id="template-open" type="text/x-jquery-tmpl">
-<div id="open-dialog" class="file-dialog" title="Open mind map">
-  <h1><span class="highlight">New!</span> From the Cloud: Dropbox and more</h1>
-  <p>Open, save and share your mind maps online in your favorite cloud storage. Supports Google Drive, Dropbox and more! Powered by <a href="http://www.filepicker.io" target="_blank">filepicker.io</a>.</p>
-  <button id="button-open-cloud">Open</button>
-  <span class="cloud-loading">Loading...</span>
-  <span class="cloud-error error"></span>
-  <div class="seperator"></div>
+<div id="open-dialog" class="file-dialog" title="Abre um mapa mental">
   <h1>Local Storage</h1>
-  <p>This is a list of all mind maps that are saved in your browser's local storage. Click on the title of a map to open it.</p>
+  <p>Esta é uma lista de todos os mapas mentais que foram salvos no Local Storage de seu Browser. Clique no nome para abrir.</p>
   <table class="localstorage-filelist">
     <thead>
       <tr>
         <th class="title">Title</th>
-        <th class="modified">Last Modified</th>
+        <th class="modified">Última modificação</th>
         <th class="delete"></th>
       </tr>
     </thead>
@@ -73,7 +58,7 @@
   </table>
   <div class="seperator"></div>
   <h1>From file</h1>
-  <p>Choose a mind map from your computer's hard drive.</p>
+  <p>Escolha um mapa mental de seu computador</p>
   <div class="file-chooser">
     <input type="file" />
   </div>
@@ -81,21 +66,21 @@
 </script>
 
 <script id="template-save" type="text/x-jquery-tmpl">
-<div id="save-dialog" class="file-dialog" title="Save mind map">
-  <h1><span class="highlight">New!</span> In the Cloud: Dropbox and more</h1>
-  <p>Open, save and share your mind maps online in your favorite cloud storage. Supports Google Drive, Dropbox and more! Powered by <a href="http://www.filepicker.io" target="_blank">filepicker.io</a>.</p>
-  <button id="button-save-cloudstorage">Save</button>
-  <span class="cloud-error error"></span>
-  <div class="seperator"></div>
+<div id="save-dialog" class="file-dialog" title="Salvar mapa mental">
   <h1>Local Storage</h1>
-  <p>You can save your mind map in your browser's local storage. Be aware that this is still experimental: the space is limited and there is no guarantee that the browser will keep this document forever. Useful for frequent backups in combination with cloud storage.</p>
-  <button id="button-save-localstorage">Save</button>
+  <p>
+    Você pode salvar seu mapa mental no Local Storage do seu navegador. 
+    Esteja ciente de que este ainda é experimental: o espaço é limitado e não há garantia 
+    de que o navegador irá manter este documento para sempre. Útil para backups freqüentes 
+    em combinação com armazenamento em nuvem.
+    </p>
+  <button id="button-save-localstorage">Salvar</button>
   <input type="checkbox" class="autosave" id="checkbox-autosave-localstorage">
-  <label for="checkbox-autosave-localstorage">Save automatically every minute.</label>
+  <label for="checkbox-autosave-localstorage">Salvar automaticamente a cada minuto.</label>
   <div class="seperator"></div>
-  <h1>To file</h1>
-  <p>Save the mind map as a file on your computer.</p>
-  <div id="button-save-hdd">Save</div>
+  <h1>Para arquivo</h1>
+  <p>Salvar arquivo do mapa mental no seu computador.</p>
+  <div id="button-save-hdd">Salvar</div>
 </div>
 </script>
 
@@ -175,9 +160,8 @@
 </script>
 
 <script id="template-export-map" type="text/x-jquery-tmpl">
-<div id="export-map-dialog" title="Export mind map">
-  <h2 class='image-description'>To download the map right-click the
-    image and select "Save Image As"</h2>
+<div id="export-map-dialog" title="Exportar mapa mental">
+  <h2 class='image-description'>Para download da imagem clique com o botão direito e depois em "Save Image As"</h2>
   <div id="export-preview"></div>
 </div>
 </script>
@@ -185,17 +169,14 @@
 </head>
 <body>
   <div id="print-area">
-    <p class="print-placeholder">Please use the print option from the
-      mind map menu</p>
+    <p class="print-placeholder">Favor, usar a opção imprimir do menu</p>
   </div>
-  <!-- DEBUG -->
-  <div id="debug-warning">Running in DEBUG mode.</div>
-  <!-- /DEBUG -->
+  
   <div id="container">
     <div id="topbar">
       <div id="toolbar">
         <div id="logo" class="logo-bg">
-          <span>mindmaps</span>
+          <span>Mindmaps</span>
         </div>
 
         <div class="buttons">
@@ -209,29 +190,13 @@
       <div id="drawing-area" class="no-select"></div>
     </div>
     <div id="bottombar">
-      <div id="about">
-        <a href="about.html" target="_blank">About mindmaps</a> <span
-          style="padding: 0 4px;">|</span> <a style="font-weight: bold"
-          href="https://spreadsheets.google.com/a/drichard.org/spreadsheet/viewform?formkey=dEE3VzFWOFp6ZV9odEhhczVBUUdzc2c6MQ"
-          target="_blank">Feedback</a>
-      </div>
       <div id="statusbar">
-        <div
-          class="buttons buttons-right buttons-small buttons-less-padding"></div>
+        <div class="buttons buttons-right buttons-small buttons-less-padding"></div>
       </div>
     </div>
   </div>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-  <script src="//api.filepicker.io/v0/filepicker.js"></script>
-
-  <!-- DEBUG -->
-  <!-- set debug flag for all scripts. Will be removed in production -->
-  <script type="text/javascript">
-    var mindmaps = mindmaps || {};
-    mindmaps.DEBUG = true;
-  </script>
-  <!-- /DEBUG -->
 
   <!-- JS:LIB:BEGIN -->
   <script src="js/libs/jquery-ui-1.8.11.custom.min.js"></script>
@@ -259,7 +224,6 @@
   <script src="js/ClipboardController.js"></script>
   <script src="js/ZoomController.js"></script>
   <script src="js/ShortcutController.js"></script>
-  <script src="js/HelpController.js"></script>
   <script src="js/FloatPanel.js"></script>
   <script src="js/Navigator.js"></script>
   <script src="js/Inspector.js"></script>
@@ -283,23 +247,5 @@
   <script src="js/AutoSaveController.js"></script>
   <script src="js/FilePicker.js"></script>
   <!-- JS:LIB:END -->
-
-  <!-- PRODUCTION
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push([ '_setAccount', 'UA-23624804-1' ]);
-  _gaq.push([ '_trackPageview' ]);
-  (function() {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-        : 'http://www')
-        + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-/PRODUCTION -->
 </body>
 </html>

@@ -16,8 +16,6 @@ mindmaps.FilePicker = function(eventBus, mindmapModel) {
     var openOptions = {
       modal: true,
       services: [
-        filepicker.SERVICES.GOOGLE_DRIVE,
-        filepicker.SERVICES.DROPBOX,
         filepicker.SERVICES.BOX,
         filepicker.SERVICES.URL
       ]
@@ -26,9 +24,7 @@ mindmaps.FilePicker = function(eventBus, mindmapModel) {
     var saveOptions = {
       modal: true,
       services: [
-        filepicker.SERVICES.GOOGLE_DRIVE,
-        filepicker.SERVICES.DROPBOX,
-        filepicker.SERVICES.BOX,
+        filepicker.SERVICES.BOX
       ]
     };
   }
